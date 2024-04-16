@@ -1,0 +1,7 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "files": [
+    "node_modules/gsap/types/index.d.ts"
+  ]
+}

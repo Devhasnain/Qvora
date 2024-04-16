@@ -2,32 +2,503 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "PP Neue Montreal";
+  font-weight: 100;
+  src: url("/assets/fonts/PPNEUEMONTREAL/PPNEUEMONTREAL-THIN.otf")
+    format("opentype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: "PP Neue Montreal";
+  font-weight: 400;
+  src: url("/assets/fonts/PPNEUEMONTREAL/PPNEUEMONTREAL-BOOK.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  font-weight: 500;
+  src: url("/assets/fonts/PPNEUEMONTREAL/PPNEUEMONTREAL-MEDIUM.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  font-weight: 700;
+  font-style: italic;
+  src: url("/assets/fonts/PPNEUEMONTREAL/PPNEUEMONTREAL-SEMIBOLDITALIC.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  font-weight: 700;
+  src: url("/assets/fonts/PPNEUEMONTREAL/PPNEUEMONTREAL-BOLD.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 100;
+  src: url("/assets/fonts/Denton/Denton Test Thin 100.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 300;
+  src: url("/assets/fonts/Denton/Denton Test Light 300.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 400;
+  src: url("/assets/fonts/Denton/Denton Test Regular 400.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 500;
+  src: url("/assets/fonts/Denton/Denton Test Medium 500.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 700;
+  src: url("/assets/fonts/Denton/Denton Test Bold 700.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 800;
+  src: url("/assets/fonts/Denton/Denton Test ExtraBold 800.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Denton Test";
+  font-weight: 900;
+  src: url("/assets/fonts/Denton/Denton Test Black 900.otf") format("opentype");
+}
+
+nav {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ecececee;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 99;
+  background-color: white;
+}
+
+nav .item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+nav .item .burger-menu {
+  height: 50px;
+  border: none;
+  border-right: 1px solid #ecececee;
+  background: transparent;
+  width: 72px;
+  cursor: pointer;
+}
+
+nav .item .burger-menu.sm-only {
+  display: none;
+  border-left: 1px solid #ecececee;
+  border-right: none;
+}
+
+@media only screen and (max-width: 1280px) {
+  nav .item .burger-menu.sm-only {
+    display: block;
+  }
+
+  nav .item .burger-menu:not(.sm-only) {
+    display: none;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+nav .item .logo {
+  width: 48px;
+  height: 50px;
+  border-right: 1px solid #ecececee;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+nav .item .logo img {
+  height: 30px;
+}
+
+nav .item .ad {
+  font-family: "PP Neue Montreal";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 1px solid #ecececee;
+  height: 100%;
+  padding: 0 27px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  nav .item .ad {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    width: calc(100vw - (27px * 2));
+    height: 50px !important;
+    background: white;
+    border-top: 1px solid #ecececee;
+    border-bottom: 1px solid #ecececee;
+    border-left: none;
   }
+}
+
+nav .item .ad .badge {
+  height: 21px;
+  padding: 0px 4px;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #c2dde4;
+}
+
+nav .item .ad .icon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+nav .item .cart,
+nav .item .ad {
+  font-family: "PP Neue Montreal";
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #ecececee;
+  gap: 10px;
+  height: 100%;
+  padding: 0 27px;
+}
+
+nav .item .cart .counter {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.6px;
+  letter-spacing: -0.02em;
+}
+
+.background-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: scale(0.5, 0.5);
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+
+.background-circle img {
+  height: 100%;
+  transform: translateX(-50%);
+  margin-left: 50%;
+}
+
+.progress {
+  position: fixed;
+  height: 10px;
+  background: #e7e7e7;
+  bottom: 15px;
+  left: 15px;
+  width: calc(100vw - (15px * 2));
+}
+
+@media only screen and (max-width: 375px) {
+  .progress {
+    height: 4px;
+  }
+}
+
+.progress .track {
+  background: #809aa3;
+  width: 290px;
+  height: 100%;
+}
+
+@media only screen and (max-width: 375px) {
+  .progress .track {
+    width: 95px;
+  }
+}
+
+button.all-reports-btn {
+  margin-top: 30px;
+  width: 312px;
+  height: 60px;
+  padding: 0px 16px 0px 24px;
+  gap: 16px;
+  background: #809aa3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  color: white;
+  font-family: PP Neue Montreal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  button.all-reports-btn {
+    height: 40px;
+    width: 208px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 13.33px;
+    letter-spacing: -0.01em;
+    padding: 0px 10.67px 0px 16px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  button.all-reports-btn {
+    width: calc(100vw - 50px);
+    position: fixed;
+    bottom: 30px;
+    left: 25px;
+  }
+}
+
+.button .icon {
+  height: 32px;
+  width: 32px;
+  border-left: 1.5px solid rgb(147, 169, 177);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 7px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .button .icon {
+    height: 21px;
+    width: 21px;
+  }
+
+  .button .icon svg {
+    height: 12px;
+  }
+}
+
+#showcase {
+  position: relative;
+  min-height: 402px !important;
+}
+
+#showcase .content {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  #showcase .content {
+    flex-direction: column;
+  }
+}
+
+#showcase .content .titles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 782px;
+  min-width: 782px;
+}
+
+@media only screen and (max-width: 768px) {
+  #showcase .content .titles {
+    transform: translateY(-170px) !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #showcase .content .titles {
+    transform: translateY(-91px) !important;
+    width: calc(100% - 30px) !important;
+    max-width: calc(100% - 30px) !important;
+    min-width: calc(100% - 30px) !important;
+  }
+}
+
+#showcase .content .titles .title-1,
+#showcase .content .titles .title-2 {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+}
+
+#showcase .content .titles .title-1 h1,
+#showcase .content .titles .title-2 h1 {
+  margin: 0;
+  font-family: "PP Neue Montreal";
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 67.2px;
+  letter-spacing: -0.03em;
+}
+
+#showcase .content .titles .title-1 h1 span,
+#showcase .content .titles .title-2 h1 span {
+  font-family: "Denton Test";
+  font-size: 80px;
+  font-style: italic;
+  font-weight: 100;
+  line-height: 67.2px;
+  letter-spacing: -0.03em;
+}
+
+#showcase .content .titles .title-1 .caption,
+#showcase .content .titles .title-2 .caption {
+  font-family: "PP Neue Montreal";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+@media only screen and (max-width: 1280px) {
+  #showcase .content .titles .title-1 .caption,
+  #showcase .content .titles .title-2 .caption {
+    font-size: 16px;
+    line-height: 19.33px;
+    letter-spacing: -0.015em;
+    text-align: center;
+  }
+}
+
+#showcase .content .titles .title-1 {
+  transform: translateY(37%) translateX(0);
+}
+
+@media only screen and (max-width: 768px) {
+  #showcase .content .titles .title-1 {
+    transform: translateY(20px) translateX(0);
+  }
+}
+
+#showcase .content .titles .title-2 {
+  transition: all 0.1s ease;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+}
+
+#showcase .content .titles .title-2 p {
+  max-width: 364px;
+}
+
+#showcase .content .slider {
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  #showcase .content .slider {
+    margin-top: 70px;
+  }
+}
+
+#showcase .content .slider .inner-slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 42.5px;
+  position: relative;
+}
+
+#showcase .content .slider .slide {
+  position: absolute;
+  top: 0;
+  width: 282px;
+  min-width: 282px;
+  background-color: #555;
+  border: 1.03px solid #7d828e26;
+}
+
+@media only screen and (max-width: 1280px) {
+  #showcase .content .slider .slide {
+    width: 234px;
+    min-width: 234px;
+  }
+}
+
+.title-1 h1 {
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 67.2px;
+  letter-spacing: -0.03em;
+  font-family: "PP Neue Montreal";
+}
+
+.title-1 h1 span {
+  font-family: "Denton Test";
+  font-size: 80px;
+  font-style: italic;
+  font-weight: 100;
+  line-height: 67.2px;
+  letter-spacing: -0.03em;
+}
+
+.second-secton-bg {
+  background-image: url("/assets/images/showcase/background-circle.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.title-2 h1 {
+  font-size: 57px;
+  font-weight: 400;
+  line-height: 50.2px;
+  letter-spacing: -0.03em;
+  font-family: "PP Neue Montreal";
+}
+
+.title-2 h1 span {
+  font-family: "Denton Test";
+  font-size: 57px;
+  font-style: italic;
+  font-weight: 100;
+  line-height: 67.2px;
+  letter-spacing: -0.03em;
+}
+
+.title-2 .caption {
+  font-family: "PP Neue Montreal";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: -0.015em;
 }

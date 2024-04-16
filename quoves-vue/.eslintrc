@@ -1,0 +1,47 @@
+{
+  "extends": "@antfu",
+  "ignorePatterns": [
+    "**/*.scss",
+    "bun.lockb",
+    "pnpm-lock.yaml"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.vue"
+      ],
+      "rules": {
+        "vue/script-setup-uses-vars": "error",
+        "vue/order-in-components": [
+          "error",
+          {
+            "order": [
+              "script",
+              "template",
+              "style"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.{js,ts,vue,json}"
+      ],
+      "rules": {
+        "semi": [
+          "error",
+          "never"
+        ]
+      }
+    },
+    {
+      "files": [
+        "*"
+      ],
+      "rules": {
+        "eol-last": "error"
+      }
+    }
+  ]
+}
