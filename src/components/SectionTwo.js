@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 
@@ -18,13 +18,15 @@ const images = [
   "/showcase/12.png",
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
+
 const SectionTwo = () => {
   const triggerRef = useRef(null);
   const sectionRef = useRef(null);
   const imgRefs = useRef([]);
   const imgRef2 = useRef(null);
 
-  gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
     const pin = gsap.fromTo(
@@ -65,24 +67,8 @@ const SectionTwo = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const section = document.getElementById("sectionTwo");
-  //     if (section) {
-  //       let sX = sectionRef?.current?._gsap?.x?.split("v")[0];
-  //       setScrollX(Number(sX));
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
   const ResetCards = () => {
-    gsap.to(".slide", { x: 0, duration: 1, zIndex: -1, opacity: 1});
+    gsap.to(".slide", { x: 0, duration: 1, zIndex: -1, opacity: 1 });
     gsap.to(".second-secton", { display: "none", opacity: 0 });
     gsap.to(".second-secton-bg", { height: "0%", width: "0%", duration: 1 });
     gsap.to(sectionRef.current, { width: "300vw", translateX: "-210vw" });
@@ -97,7 +83,7 @@ const SectionTwo = () => {
     gsap.fromTo(
       ".slide",
       { x: 0, opacity: 1 },
-      { x: "250vw", opacity: 0, duration: 1, zIndex: -1}
+      { x: "250vw", opacity: 0, duration: 1, zIndex: -1 }
     );
     gsap.to(sectionRef.current, { width: "100%", translateX: 0 });
     gsap.to(".first-secton", { display: "none", opacity: 0 });
@@ -165,24 +151,6 @@ const SectionTwo = () => {
                 src={"/showcase/13.png"}
               />
 
-              {/* <div
-                className="w-full hidden absolute top-0 left-0 h-full z-10"
-                id="animated-section"
-              >
-                <div className="container px-5 mx-auto">
-                  <div id="animated-section" className="grid grid-cols-2 h-full">
-                    <div className="">
-                      <div className="title-1">
-                        <h1>
-                          The most <br />
-                          comprehensive <br />
-                          <span>analysis of your face</span>
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
 
@@ -197,18 +165,18 @@ const SectionTwo = () => {
               }}
             >
               <div className="grid grid-cols-2 items-center h-[100vh]">
-                <div class="title-2 mt-4">
+                <div className="title-2 mt-4">
                   <h1>
                     Documented into <br />
                     200 pages <span>report of you</span>
                   </h1>
 
-                  <p class="caption">
+                  <p className="caption">
                     Professional facial assessments and clear facial changes
                     visualisation.
                   </p>
 
-                  <button class="all-reports-btn">
+                  <button className="all-reports-btn">
                     ALL REPORTS
                     <div class="icon">
                       <svg
@@ -233,15 +201,14 @@ const SectionTwo = () => {
                   </button>
                 </div>
                 <div className="flex flex-row justify-end">
-                <Image
-                  className="shadow-xl hover:shadow-2xl transition-all border slide-last mb-5 mr-5"
-                  height={330}
-                  width={280}
-                  alt=""
-                  src={"/showcase/13.png"}
-                />
+                  <Image
+                    className="shadow-xl hover:shadow-2xl transition-all border slide-last mb-5 mr-5"
+                    height={330}
+                    width={280}
+                    alt=""
+                    src={"/showcase/13.png"}
+                  />
                 </div>
-
               </div>
             </div>
           </div>
